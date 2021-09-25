@@ -29,7 +29,7 @@ void clearBoard();  //  implemented
 
 
 int main(){
-    char input;
+    string input;
     for(int i = 0; i < 3; i++){
         snake.push_back(    make_pair(((MAX_BOARD_SIZE+1)/2-1), (((MAX_BOARD_SIZE+1)/2))-i)   );  //  Sets the starting position of the snake to middle three sections of board
     }
@@ -42,13 +42,13 @@ int main(){
 
     while(playGame){
         input = ' ';
-        while(input != 'w' && input != 'a' && input != 's' && input != 'd' && input != 'q'){
-            input = getchar();
-        if(input == 'q'){
+        while(input != "w" && input != "a" && input != "s" && input != "d" && input != "q"){
+            cin >> input;
+        if(input == "q"){
             playGame = false;
             break;
         }
-        move(input);
+        move(input[0]);
         system("clear");
         printBoard();
         }
