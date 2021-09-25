@@ -8,7 +8,7 @@ using namespace std;
 
 
 
-const int MAX_BOARD_SIZE = 21;  //  Global variable for max x and y coordinate of board; boards origin is 0, 0
+const int MAX_BOARD_SIZE = 19;  //  Global variable for max x and y coordinate of board; boards origin is 0, 0
 string board[MAX_BOARD_SIZE][MAX_BOARD_SIZE];  //  constant for board size
 vector<pair<int,int>> snake;  //  global so all functions can directly acess the snake vector
 bool playGame = true;  //  condtion to end game when false
