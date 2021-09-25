@@ -76,7 +76,7 @@ void collision(){  //  Exits game when collision is detected with wall or rest o
 
 
 
-void printBoard(){  //  prints the board with a neat boarder around it
+void printBoard(){  //  prints the board with a neat boarder around it with colour
     system("clear");
     for(int i = 0; i < MAX_BOARD_SIZE*2+3; i++){
         cout << "\033[0;36m▄";
@@ -116,8 +116,8 @@ void draw(string value, pair<int, int> coord){  //  draw fuction when only a sin
 void move(char direction){  //  adds new snake head position, checks it doesn't collide with anything then prints the new board
     bool valid = true;
     pair<int, int> clean, head, oldHead;
-    clean.first = snake[snake.size()-1].first;  //  removes the last section of the snake
-    clean.second = snake[snake.size()-1].second;
+    clean.first = snake[snake.size()-1].first;  //  creates pairs for the new head, old head and area to clean
+    clean.second = snake[snake.size()-1].second;  //  these can be used to move the snake while changing the colour of only one section
     oldHead.first = snake[0].first;
     oldHead.second = snake[0].second;
     switch(direction){
@@ -126,7 +126,7 @@ void move(char direction){  //  adds new snake head position, checks it doesn't 
             printBoard();
             valid = false;
             break;
-        case 'w':
+        case 'w':  //  array (0,0) is in top left so y-axis is inverted when moving the snake
             snake.insert(snake.begin(), make_pair(snake[0].first, snake[0].second-1));  //  moves snake up
             break;
         case 'a':
@@ -145,7 +145,7 @@ void move(char direction){  //  adds new snake head position, checks it doesn't 
             head.first = snake[0].first;  //  makes pair for snakes head new coordinates
             head.second = snake[0].second;
             draw(" ", clean);  //  removes the last section of the snake from the board
-            snake.pop_back();
+            snake.pop_back();  //  removes the pair with the snakes last position to prevent colliding with non-existant sections of the snake
             draw("\033[0;32m■", oldHead);  //  draws the block behind the head to the body colour
             draw("\033[1;32m■", head);  //  draws the new snake position onto the board
             printBoard();
