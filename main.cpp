@@ -37,12 +37,14 @@ int main(){
     
       //  reverses snake so head is at front as array is reverse of mathmatical graphs
     clearBoard();
-    draw("■", snake);  //  draws snake in middle of board and displays it for starting position
+    draw("\033[0;32m■", snake);  //  draws snake in middle of board and displays it for starting position
+    draw("\033[1;32m■", snake[0]);
     printBoard();
 
     while(playGame){
         input = ' ';
         while(input != "w" && input != "a" && input != "s" && input != "d" && input != "q"){
+            cout << "\033[0m";
             cin >> input;
         if(input == "q"){
             playGame = false;
@@ -55,7 +57,7 @@ int main(){
     }
     system("clear");
     printBoard();
-    cout << "GAME OVER  SCORE: " << total << "\n";
+    cout << "\033[1;31mGAME OVER  SCORE: " << total << "\n";
 }
 
 
@@ -77,19 +79,20 @@ void collision(){  //  Exits game when collision is detected with wall or rest o
 void printBoard(){  //  prints the board with a neat boarder around it
     system("clear");
     for(int i = 0; i < MAX_BOARD_SIZE*2+3; i++){
-        cout << "▄";
+        cout << "\033[0;36m▄";
     }
     cout << "\n";
     for(int i = 0; i < MAX_BOARD_SIZE; i++){
-        cout << "█ ";
+        cout << "\033[0;36m█ ";
+        cout << "\033[0m";
         for(int j = 0; j < MAX_BOARD_SIZE; j++){
             cout << board[i][j] << " ";
         }
-        cout << "█";
+        cout << "\033[0;36m█";
         cout << "\n";
     }
     for(int i = 0; i < MAX_BOARD_SIZE*2+3; i++){
-        cout << "▀";
+        cout << "\033[0;36m▀";
     }
     cout << "\n";
 }
@@ -112,9 +115,11 @@ void draw(string value, pair<int, int> coord){  //  draw fuction when only a sin
 
 void move(char direction){  //  adds new snake head position, checks it doesn't collide with anything then prints the new board
     bool valid = true;
-    pair<int, int> clean, head;
+    pair<int, int> clean, head, oldHead;
     clean.first = snake[snake.size()-1].first;  //  removes the last section of the snake
     clean.second = snake[snake.size()-1].second;
+    oldHead.first = snake[0].first;
+    oldHead.second = snake[0].second;
     switch(direction){
         default:
             system("clear");  //  prevents invalid moves being made
@@ -141,7 +146,8 @@ void move(char direction){  //  adds new snake head position, checks it doesn't 
             head.second = snake[0].second;
             draw(" ", clean);  //  removes the last section of the snake from the board
             snake.pop_back();
-            draw("■", head);  //  draws the new snake position onto the board
+            draw("\033[0;32m■", oldHead);  //  draws the block behind the head to the body colour
+            draw("\033[1;32m■", head);  //  draws the new snake position onto the board
             printBoard();
         }
     }
