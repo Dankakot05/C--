@@ -32,7 +32,7 @@ void clearBoard();  //  implemented
 int main(){
     string input;
     for(int i = 0; i < 3; i++){
-        snake.push_back(    make_pair(((MAX_BOARD_SIZE+1)/2-1), (((MAX_BOARD_SIZE+1)/2))+i)   );  //  Sets the starting position of the snake to middle three sections of board
+        snake.push_back(make_pair(((MAX_BOARD_SIZE+1)/2-1), (((MAX_BOARD_SIZE+1)/2))+i));  //  Sets the starting position of the snake to middle three sections of board
     }
     
     clearBoard();
