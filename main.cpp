@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector> 
 #include <algorithm>
+#include <random>
 
 
 
@@ -31,11 +32,9 @@ void clearBoard();  //  implemented
 int main(){
     string input;
     for(int i = 0; i < 3; i++){
-        snake.push_back(    make_pair(((MAX_BOARD_SIZE+1)/2-1), (((MAX_BOARD_SIZE+1)/2))-i)   );  //  Sets the starting position of the snake to middle three sections of board
+        snake.push_back(    make_pair(((MAX_BOARD_SIZE+1)/2-1), (((MAX_BOARD_SIZE+1)/2))+i)   );  //  Sets the starting position of the snake to middle three sections of board
     }
-    reverse(snake.begin(), snake.end());
     
-      //  reverses snake so head is at front as array is reverse of mathmatical graphs
     clearBoard();
     draw("\033[0;32m■", snake);  //  draws snake in middle of board and displays it for starting position
     draw("\033[1;32m■", snake[0]);
