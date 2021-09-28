@@ -57,7 +57,7 @@ int main(){
     }
     system("clear");
     printBoard();
-    cout << "\033[1;31mGAME OVER  SCORE: " << total << "\n";
+    cout << "\033[1;31mGAME OVER" << "\n";
 }
 
 
@@ -95,6 +95,7 @@ void printBoard(){  //  prints the board with a neat boarder around it with colo
         cout << "\033[0;36m▀";
     }
     cout << "\n";
+    cout << "\033[0mScore: " << total << "\n";
 }
 
 
@@ -162,4 +163,9 @@ void clearBoard(){
         board[j][i] = " "; 
         }
     }
+}
+
+void genApple(){
+    pair<int, int> apple;
+    draw("\033[0;31m■", apple);
 }
